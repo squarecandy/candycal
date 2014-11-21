@@ -1,0 +1,47 @@
+/* CandyCal Base Styles */
+
+h1.candycal_title {font-size: 1em; margin: 0; padding: 0; font-weight: normal;}
+
+div.candycal_date {font-size: 1em;}
+
+.candycal p {margin: 0.5em 0; padding: 0; font-size: 0.85em;}
+
+.candycal article {
+  margin: 1em 0 0;
+  padding: 1em 0 0;
+  border-top: 1px solid #ccc;
+}
+.candycal article.candycal_item_first,
+.candycal article.candycal_item_year_first {
+  margin: 0;
+  padding: 0;
+  border-top: none;
+}
+
+a.candycal_map_link,
+a.candycal_gcal_link,
+a.candycal_mini_more {
+  display: inline-block;
+  font-size: 0.75em;
+  background: #666;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.125em 1em;
+  border-radius: 4px;
+  text-decoration: none;
+  vertical-align: top;
+  margin-left: 1em;
+}
+a.candycal_gcal_link {
+ font-size: 0.65em;
+ padding: 0.2em 1em;
+}
+a.candycal_mini_more {
+  text-decoration: none;
+  display: inline-block;
+  margin: 1em 0;
+  font-size: 1em;
+}
+
+h2.candycal_year {border-bottom:1px solid #000; margin: 2em 0 1em; padding: 0 0 0.5em;}
+h2.candycal_year_first {margin-top: 0;}
