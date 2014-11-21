@@ -2,7 +2,8 @@ candycal
 ===========
 
 
-=== SquareCandy Google Calendar ===
+# SquareCandy Google Calendar
+
 Contributors: squarecandy
 Donate link: http://squarecandy.net/
 Tags: calendar, gcal, google calendar
@@ -13,7 +14,7 @@ Stable tag: trunk
 Display a google calendar feed on your site in a variety of ways.  Easily theme the output. 
 
 
-== Description ==
+## Description
 
 Display a public google calendar feed on your site using a variety of display methods:
 * Upcoming Events
@@ -23,7 +24,7 @@ Display a public google calendar feed on your site using a variety of display me
 Great for theme developers - easily theme the simple HTML5 output. Override the plugin stylesheet by copying it to your theme folder.
 
 
-== Installation ==
+## Installation
 
 
 1. Create a Google Calendar and make sure your calendar is set to public.
@@ -36,19 +37,13 @@ Great for theme developers - easily theme the simple HTML5 output. Override the 
     * [candycal type=upcoming]
     * [candycal type=past]
     * [candycal type=mini]
-
-Theme developers may also hard code these calendars:
-
-`if (function_exists('candycal_display')) { print candycal_display('upcoming'); }`
-
-`if (function_exists('candycal_display')) { print candycal_display('past'); }`
-
-`if (function_exists('candycal_display')) { print candycal_display('mini'); }`
+1. Theme developers may also hard code these calendars:
+    * `if (function_exists('candycal_display')) { print candycal_display('upcoming'); }`
+    * `if (function_exists('candycal_display')) { print candycal_display('past'); }`
+    * `if (function_exists('candycal_display')) { print candycal_display('mini'); }`
 
 
-
-== Changelog ==
-
+## Changelog
 
 = 1.0.2 =
 * Updated for the Google Calendar API version 3.
