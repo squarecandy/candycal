@@ -72,6 +72,8 @@ function register_candycalsettings() {
   add_settings_section('candycal_mini', 'Mini Display Options', 'candycal_mini_header', 'candycal');
   //mini fields
   add_settings_field('candycal_mini_date_format', 'Mini: Date Format', 'candycal_mini_date_format_string', 'candycal', 'candycal_mini');
+  add_settings_field('candycal_multidate_format1', 'Mini: Multi-Day Date Format Start Date', 'candycal_mini_multidate_format1_string', 'candycal', 'candycal_main');
+  add_settings_field('candycal_multidate_format2', 'Mini: Multi-Day Date Format End Date', 'candycal_mini_multidate_format2_string', 'candycal', 'candycal_main');
   add_settings_field('candycal_mini_num_events', 'Mini: How Many Upcoming Events to Show', 'candycal_mini_num_events_string', 'candycal', 'candycal_mini');
   add_settings_field('candycal_mini_more', 'Mini: Display More Link?', 'candycal_mini_more_string', 'candycal', 'candycal_mini');
   add_settings_field('candycal_mini_more_url', 'Mini: More Link URL', 'candycal_mini_more_url_string', 'candycal', 'candycal_mini');
@@ -98,6 +100,8 @@ function candycal_set_default_settings() {
       'gcal_link' => 'yes',
       'past_by_year' => '',
       'mini_date_format' => 'D, M j',
+      'mini_multidate_format1' => 'M j',
+  		'mini_multidate_format2' => 'M j',
       'mini_num_events' => 3,
       'mini_more' => '',
       'mini_more_url' => '',
@@ -140,18 +144,18 @@ function candycal_multidate_format2_string(){
 }
 
 function candycal_time_format_string(){
-  $options = get_option('candycal_options',array('time_format'=>'g:ia'));
+  $options = get_option('candycal_options');
   echo '<input type="text" id="candycal_time_format" name="candycal_options[time_format]" size="20" value="'.$options['time_format'].'" /><br />
   		<small>see PHP\'s <a href="http://www.php.net/date">date() manual</a> for formatting options.</small>';
 }
 
 function candycal_date_time_sep_string(){
-  $options = get_option('candycal_options',array('date_time_sep'=>' at '));
+  $options = get_option('candycal_options');
   echo '<input type="text" id="candycal_date_time_sep" name="candycal_options[date_time_sep]" size="6" value="'.$options['date_time_sep'].'" />';
 }
 
 function candycal_date_or_title_string(){
-  $options = get_option('candycal_options',array('date_or_title'=>'date'));
+  $options = get_option('candycal_options');
   echo '<input type="radio" id="candycal_date_or_title_date" name="candycal_options[date_or_title]" value="date"';
   if ($options['date_or_title']=='date') echo ' checked="checked"';
   echo ' /> Date<br />';
@@ -161,38 +165,51 @@ function candycal_date_or_title_string(){
 }
 
 function candycal_display_address_string(){
-  $options = get_option('candycal_options',array('display_address'=>'yes'));
+  $options = get_option('candycal_options');
   echo '<input type="checkbox" id="candycal_display_address" name="candycal_options[display_address]" value="yes"';
   if ($options['display_address']=='yes') echo ' checked="checked"';
   echo ' />';
 }
 
 function candycal_map_link_string(){
-  $options = get_option('candycal_options',array('map_link'=>'yes'));
+  $options = get_option('candycal_options');
   echo '<input type="checkbox" id="candycal_map_link" name="candycal_options[map_link]" value="yes"';
   if ($options['map_link']=='yes') echo ' checked="checked"';
   echo ' />';
 }
 
 function candycal_gcal_link_string(){
-  $options = get_option('candycal_options',array('gcal_link'=>'yes'));
+  $options = get_option('candycal_options');
   echo '<input type="checkbox" id="candycal_gcal_link" name="candycal_options[gcal_link]" value="yes"';
   if ($options['gcal_link']=='yes') echo ' checked="checked"';
   echo ' />';
 }
 
 function candycal_past_by_year_string(){
-  $options = get_option('candycal_options',array('past_by_year'=>'yes'));
+  $options = get_option('candycal_options');
   echo '<input type="checkbox" id="candycal_past_by_year" name="candycal_options[past_by_year]" value="yes"';
   if ($options['past_by_year']=='yes') echo ' checked="checked"';
   echo ' />';
 }
 
 function candycal_mini_date_format_string(){
-  $options = get_option('candycal_options',array('mini_date_format'=>'D, M j'));
+  $options = get_option('candycal_options');
   echo '<input type="text" id="candycal_mini_date_format" name="candycal_options[mini_date_format]" size="20" value="'.$options['mini_date_format'].'" /><br />
   	<small>see PHP\'s <a href="http://www.php.net/date">date() manual</a> for formatting options.</small>';
 }
+
+function candycal_mini_multidate_format1_string(){
+  $options = get_option('candycal_options');
+  echo '<input type="text" id="candycal_mini_multidate_format1" name="candycal_options[mini_multidate_format1]" size="20" value="'.$options['mini_multidate_format1'].'" /><br />
+  	<small>see PHP\'s <a href="http://www.php.net/date">date() manual</a> for formatting options.</small>';
+}
+
+function candycal_mini_multidate_format2_string(){
+  $options = get_option('candycal_options');
+  echo '<input type="text" id="candycal_mini_multidate_format2" name="candycal_options[mini_multidate_format2]" size="20" value="'.$options['mini_multidate_format2'].'" /><br />
+  	<small>see PHP\'s <a href="http://www.php.net/date">date() manual</a> for formatting options.</small>';
+}
+
 
 function candycal_mini_num_events_string(){
   $options = get_option('candycal_options');
@@ -200,19 +217,19 @@ function candycal_mini_num_events_string(){
 }
 
 function candycal_mini_more_string(){
-  $options = get_option('candycal_options',array('mini_more'=>'yes'));
+  $options = get_option('candycal_options');
   echo '<input type="checkbox" id="candycal_mini_more" name="candycal_options[mini_more]" value="yes"';
   if ($options['mini_more']=='yes') echo ' checked="checked"';
   echo ' />';
 }
 
 function candycal_mini_more_url_string(){
-  $options = get_option('candycal_options',array('mini_more_url'=>''));
+  $options = get_option('candycal_options');
   echo '<input type="url" id="candycal_mini_more_url" name="candycal_options[mini_more_url]" size="50" value="'.$options['mini_more_url'].'" />';
 }
 
 function candycal_mini_description_string(){
-  $options = get_option('candycal_options',array('mini_description'=>'yes'));
+  $options = get_option('candycal_options');
   echo '<input type="checkbox" id="candycal_mini_description" name="candycal_options[mini_description]" value="yes"';
   if ($options['mini_description']=='yes') echo ' checked="checked"';
   echo ' />';
@@ -249,6 +266,8 @@ function candycal_options_validate($input) {
   $newinput['past_by_year'] = $input['past_by_year']=='yes' ? 'yes' : '';
   
   $newinput['mini_date_format'] = trim($input['mini_date_format']);
+  $newinput['mini_multidate_format1'] = trim($input['mini_multidate_format1']);
+  $newinput['mini_multidate_format2'] = trim($input['mini_multidate_format2']);
   $newinput['mini_num_events'] = preg_replace("/[^0-9]/","",$input['mini_num_events']);
   $newinput['mini_more'] = $input['mini_more']=='yes' ? 'yes' : '';
   $newinput['mini_more_url'] = trim($input['mini_more_url']);
@@ -314,6 +333,8 @@ function candycal_display($type) {
     $minimore = file_get_contents($minimore);
     $minimore = json_decode($minimore);
     $minimore = count($minimore->items);
+    $multidateformat1 = $options['mini_multidate_format1'];
+    $multidateformat2 = $options['mini_multidate_format1'];
   
   elseif ($type == 'past'): 
     // Get past events only
@@ -322,6 +343,8 @@ function candycal_display($type) {
     $gcal_raw = json_decode($gcal_raw);
     $gcal_raw->items = array_reverse($gcal_raw->items, true);
     $date_format = $options['date_format'];
+    $multidateformat1 = $options['multidate_format1'];
+    $multidateformat2 = $options['multidate_format1'];
     
   
   else:
@@ -330,16 +353,15 @@ function candycal_display($type) {
     $gcal_raw = file_get_contents($gcal_url);
     $gcal_raw = json_decode($gcal_raw);
     $date_format = $options['date_format'];
+    $multidateformat1 = $options['multidate_format1'];
+    $multidateformat2 = $options['multidate_format1'];
         
   endif;
   
   if (!empty($gcal_raw)) :
+    
     // Do the display rendering
-    // print '<pre>';print_r($options);print '</pre>';
-    // print '<pre>'.var_export($gcal_raw->items,true).'</pre>';
-    
-    // ALL THE STUFF HERE.
-    
+        
     $output = '<section class="candycal candycal_'.$type.' candycal_'.$options['date_or_title'].'_first">';
     
     $count = count($gcal_raw->items);
@@ -358,7 +380,7 @@ function candycal_display($type) {
     	
     	// All day event - multi day
     	elseif (isset($item->start->date) && isset($item->end->date) && (date('Ymd', strtotime($item->end->date)) - date('Ymd', strtotime($item->start->date)) > 1)) {
-      	$date .= '<time itemprop="startDate" datetime="'.date('Y-m-d',strtotime($item->start->date)).'">'.date($options['multidate_format1'], strtotime($item->start->date)).'</time> &ndash; <time itemprop="endDate" datetime="'.date('Y-m-d',strtotime($item->end->date)).'">'.date($options['multidate_format2'], strtotime($item->end->date)).'</time>';
+      	$date .= '<time itemprop="startDate" datetime="'.date('Y-m-d',strtotime($item->start->date)).'">'.date($multidateformat1, strtotime($item->start->date)).'</time> &ndash; <time itemprop="endDate" datetime="'.date('Y-m-d',strtotime($item->end->date)).'">'.date($multidateformat2, strtotime($item->end->date)).'</time>';
       	$year = date('Y',strtotime($item->start->date));
     	}
   

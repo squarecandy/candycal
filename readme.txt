@@ -23,7 +23,7 @@ Great for theme developers - easily theme the simple HTML5 output. Override the 
 
 
 1. Create a Google Calendar and make sure your calendar is set to public.
-1. place the **candycal_v3** folder in your /wp-content/plugins directory.
+1. place the **candycal** folder in your /wp-content/plugins directory.
 1. enable the plugin
 1. IMPORTANT: make sure you have specified a timezone on the wordpress Settings > General page. Using a city that is in your timezone will keep you from having to adjust for Daylight Savings Time...
 1. Go to Settings > Candy-Cal and enter your Google Calendar ID.  You will also need a google API key for your domain name or server IP.  
