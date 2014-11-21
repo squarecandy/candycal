@@ -1,4 +1,4 @@
-=== SquareCandy Google Calendar (APIv3) ===
+=== SquareCandy Google Calendar ===
 Contributors: squarecandy
 Donate link: http://squarecandy.net/
 Tags: calendar, gcal, google calendar
@@ -46,8 +46,12 @@ Theme developers may also hard code these calendars:
 == Changelog ==
 
 
-= 3.0.1 =
-* This is the first version of the plugin for the Google Calendar API version 3.
+= 1.0.2 =
+* Updated for the Google Calendar API version 3.
+* updated options page handling to use built in wordpress functions
+
+= 1.0.1 =
+* This is the first version of the plugin
 
 == Upgrade Notice ==
 

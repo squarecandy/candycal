@@ -1,28 +1,12 @@
 <?php
 /*
 Plugin Name: SquareCandy Google Calendar (APIv3)
-Plugin URI: http://squarecandydesign.com/plugins/candycal_v3
+Plugin URI: http://squarecandydesign.com/plugins/candycal
 Description: A custom display for your google calendar feed utilizing google calendar API v3. 
-Version: 3.0.1
+Version: 1.0.2
 Author: Peter Wise (squarecandy)
 Author URI: http://squarecandydesign.com
 License:  GPL2
-*/
-
-/*  Copyright 2014  squarecandy  (email : peter@squarecandy.net)
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as 
-    published by the Free Software Foundation.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 add_action('wp_print_styles', 'add_candycal_stylesheet');
