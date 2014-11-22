@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: SquareCandy Google Calendar (APIv3)
+Plugin Name: SquareCandy Google Calendar
 Plugin URI: http://squarecandydesign.com/plugins/candycal
-Description: A custom display for your google calendar feed utilizing google calendar API v3. 
+Description: A custom display for your google calendar feed. 
 Version: 1.0.2
 Author: Peter Wise (squarecandy)
 Author URI: http://squarecandydesign.com
@@ -72,8 +72,8 @@ function register_candycalsettings() {
   add_settings_section('candycal_mini', 'Mini Display Options', 'candycal_mini_header', 'candycal');
   //mini fields
   add_settings_field('candycal_mini_date_format', 'Mini: Date Format', 'candycal_mini_date_format_string', 'candycal', 'candycal_mini');
-  add_settings_field('candycal_multidate_format1', 'Mini: Multi-Day Date Format Start Date', 'candycal_mini_multidate_format1_string', 'candycal', 'candycal_main');
-  add_settings_field('candycal_multidate_format2', 'Mini: Multi-Day Date Format End Date', 'candycal_mini_multidate_format2_string', 'candycal', 'candycal_main');
+  add_settings_field('candycal_multidate_format1', 'Mini: Multi-Day Date Format Start Date', 'candycal_mini_multidate_format1_string', 'candycal', 'candycal_mini');
+  add_settings_field('candycal_multidate_format2', 'Mini: Multi-Day Date Format End Date', 'candycal_mini_multidate_format2_string', 'candycal', 'candycal_mini');
   add_settings_field('candycal_mini_num_events', 'Mini: How Many Upcoming Events to Show', 'candycal_mini_num_events_string', 'candycal', 'candycal_mini');
   add_settings_field('candycal_mini_more', 'Mini: Display More Link?', 'candycal_mini_more_string', 'candycal', 'candycal_mini');
   add_settings_field('candycal_mini_more_url', 'Mini: More Link URL', 'candycal_mini_more_url_string', 'candycal', 'candycal_mini');
@@ -87,8 +87,8 @@ register_activation_hook(__FILE__,'candycal_set_default_settings');
 
 function candycal_set_default_settings() {
   
-  if (!get_option('candycal_options')) {
-    $options = array (
+  $options = get_option('candycal_options');
+  $defaultoptions = array (
   		'date_format' => 'l, F j, Y',
   		'multidate_format1' => 'F j',
   		'multidate_format2' => 'F j, Y',
@@ -107,7 +107,12 @@ function candycal_set_default_settings() {
       'mini_more_url' => '',
       'mini_description' => 'yes'
     );
-    add_option( 'candycal_options', $options );
+    $insertoptions = array();
+    foreach ($defaultoptions as $key => $value) {
+      if (!isset($options[$key])) $insertoptions[$key] = $value;
+      else $insertoptions[$key] = $options[$key];
+    }
+    add_option( 'candycal_options', $insertoptions );
   } 
 	
 }
