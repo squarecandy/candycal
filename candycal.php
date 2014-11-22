@@ -89,31 +89,30 @@ function candycal_set_default_settings() {
   
   $options = get_option('candycal_options');
   $defaultoptions = array (
-  		'date_format' => 'l, F j, Y',
-  		'multidate_format1' => 'F j',
-  		'multidate_format2' => 'F j, Y',
-      'time_format' => 'g:ia',
-      'date_time_sep' => ' at ',
-      'date_or_title' => 'date',
-      'display_address' => 'yes',
-      'map_link' => 'yes',
-      'gcal_link' => 'yes',
-      'past_by_year' => '',
-      'mini_date_format' => 'D, M j',
-      'mini_multidate_format1' => 'M j',
-  		'mini_multidate_format2' => 'M j',
-      'mini_num_events' => 3,
-      'mini_more' => '',
-      'mini_more_url' => '',
-      'mini_description' => 'yes'
-    );
-    $insertoptions = array();
-    foreach ($defaultoptions as $key => $value) {
-      if (!isset($options[$key])) $insertoptions[$key] = $value;
-      else $insertoptions[$key] = $options[$key];
-    }
-    add_option( 'candycal_options', $insertoptions );
-  } 
+		'date_format' => 'l, F j, Y',
+		'multidate_format1' => 'F j',
+		'multidate_format2' => 'F j, Y',
+    'time_format' => 'g:ia',
+    'date_time_sep' => ' at ',
+    'date_or_title' => 'date',
+    'display_address' => 'yes',
+    'map_link' => 'yes',
+    'gcal_link' => 'yes',
+    'past_by_year' => '',
+    'mini_date_format' => 'D, M j',
+    'mini_multidate_format1' => 'M j',
+		'mini_multidate_format2' => 'M j',
+    'mini_num_events' => 3,
+    'mini_more' => '',
+    'mini_more_url' => '',
+    'mini_description' => 'yes'
+  );
+  $insertoptions = array();
+  foreach ($defaultoptions as $key => $value) {
+    if (!isset($options[$key])) $insertoptions[$key] = $value;
+    else $insertoptions[$key] = $options[$key];
+  }
+  add_option( 'candycal_options', $insertoptions ); 
 	
 }
 
