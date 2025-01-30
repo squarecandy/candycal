@@ -1,7 +1,8 @@
 <?php
 /*
 Plugin Name: SquareCandy Google Calendar
-Plugin URI: http://squarecandydesign.com/plugins/candycal
+Plugin URI: https://github.com/squarecandy/candycal
+GitHub Plugin URI: https://github.com/squarecandy/candycal
 Description: A custom display for your google calendar feed. 
 Version: 1.0.2
 Author: Peter Wise (squarecandy)
